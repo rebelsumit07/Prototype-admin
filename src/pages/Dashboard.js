@@ -187,47 +187,70 @@ const handleDelete = (orderId) => {
                   style={{ padding: "6px", borderRadius: "5px", border: "1px solid #ccc" }}
                 >
                   <option value="" disabled>Update Status</option>
-                  <option value="Received">Received</option>
+                  <option value="Order Received">Received</option>
                   <option value="Processing">Processing</option>
                   <option value="Out for Delivery">Out for Delivery</option>
                   <option value="Delivered">Delivered</option>
                   <option value="Canceled">Canceled</option>
                 </select>
-                <button
-                  onClick={() => handleAddRemarks(order.orderId)}
-                  style={{
-                    padding: "6px 10px",
-                    borderRadius: "5px",
-                    backgroundColor: "#2196f3",
-                    color: "#fff",
-                    border: "none",
-                    cursor: "pointer"
-                  }}
-                >
+               <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px",
+    flex: 1,          // fills height of order box
+  }}
+>
+  {/* Status dropdown */}
+  <select
+    onChange={e => handleStatusChange(order.orderId, e.target.value)}
+    defaultValue=""
+    style={{
+      padding: "6px",
+      borderRadius: "5px",
+      border: "1px solid #ccc",
+    }}
+  >
+    <option value="" disabled>Update Status</option>
+    <option value="Received">Received</option>
+    <option value="Processing">Processing</option>
+    <option value="Out for Delivery">Out for Delivery</option>
+    <option value="Delivered">Delivered</option>
+    <option value="Canceled">Canceled</option>
+  </select>
 
+  {/* Add Remarks Button */}
+  <button
+    onClick={() => handleAddRemarks(order.orderId)}
+    style={{
+      padding: "6px 10px",
+      borderRadius: "5px",
+      backgroundColor: "#2196f3",
+      color: "#fff",
+      border: "none",
+      cursor: "pointer",
+    }}
+  >
+    Add Remarks
+  </button>
 
-                  Add Remarks
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-<button
+  {/* Delete Button at bottom */}
+  <button
     onClick={() => handleDelete(order.orderId)}
     style={{
       padding: "6px 10px",
       borderRadius: "5px",
-      backgroundColor: "#e53935",
+      backgroundColor: "#e53935", // red
       color: "#fff",
       border: "none",
       cursor: "pointer",
-      marginTop: "auto"  // pushes it to bottom
+      marginTop: "auto"  // pushes Delete to bottom
     }}
   >
     Delete
   </button>
+</div>
+
       {confirm && (
         <ConfirmDialog
           message={confirm.message}
@@ -256,5 +279,6 @@ const handleDelete = (orderId) => {
 };
 
 export default Dashboard;
+
 
 
