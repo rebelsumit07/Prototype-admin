@@ -225,7 +225,7 @@ const handleDelete = (orderId) => {
     style={{
       padding: "6px 10px",
       borderRadius: "5px",
-      backgroundColor: "#2196f3",
+      backgroundColor: "#4caf50",
       color: "#fff",
       border: "none",
       cursor: "pointer",
@@ -279,6 +279,7 @@ const handleDelete = (orderId) => {
 };
 
 export default Dashboard;
+
 
 
 
