@@ -94,6 +94,34 @@ const Dashboard = () => {
     order.phone.toLowerCase().includes(search.toLowerCase())
   );
 
+const handleDelete = (orderId) => {
+  setConfirm({
+    message: `Delete order ${orderId}?`, // matches other confirmations
+    onConfirm: async () => {
+      try {
+        const res = await API.delete(`/orders/${orderId}`);
+        const data = res.data;
+
+        if (data.success) {
+          // remove order from UI instantly
+          setOrders(prev => prev.filter(order => order.orderId !== orderId));
+          setToast(`✅ Order ${orderId} deleted successfully`);
+          setTimeout(() => setToast(""), 3000);
+        } else {
+          alert(data.message || "Failed to delete order");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Server error");
+      }
+
+      setConfirm(null);
+    }
+  });
+};
+
+
+
   return (
     <div style={{ padding: "20px" }}>
       <h2 style={{ marginBottom: "20px" }}>Orders Dashboard</h2>
@@ -176,6 +204,20 @@ const Dashboard = () => {
                     cursor: "pointer"
                   }}
                 >
+<button
+  onClick={() => handleDelete(order.orderId)}
+  style={{
+    padding: "6px 10px",
+    borderRadius: "5px",
+    backgroundColor: "#e53935", // red
+    color: "#fff",
+    border: "none",
+    cursor: "pointer"
+  }}
+>
+  Delete
+</button>
+
                   Add Remarks
                 </button>
               </div>
@@ -212,3 +254,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
