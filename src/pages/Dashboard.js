@@ -204,19 +204,7 @@ const handleDelete = (orderId) => {
                     cursor: "pointer"
                   }}
                 >
-<button
-  onClick={() => handleDelete(order.orderId)}
-  style={{
-    padding: "6px 10px",
-    borderRadius: "5px",
-    backgroundColor: "#e53935", // red
-    color: "#fff",
-    border: "none",
-    cursor: "pointer"
-  }}
->
-  Delete
-</button>
+
 
                   Add Remarks
                 </button>
@@ -226,6 +214,20 @@ const handleDelete = (orderId) => {
         </div>
       )}
 
+<button
+    onClick={() => handleDelete(order.orderId)}
+    style={{
+      padding: "6px 10px",
+      borderRadius: "5px",
+      backgroundColor: "#e53935",
+      color: "#fff",
+      border: "none",
+      cursor: "pointer",
+      marginTop: "auto"  // pushes it to bottom
+    }}
+  >
+    Delete
+  </button>
       {confirm && (
         <ConfirmDialog
           message={confirm.message}
@@ -254,4 +256,5 @@ const handleDelete = (orderId) => {
 };
 
 export default Dashboard;
+
 
